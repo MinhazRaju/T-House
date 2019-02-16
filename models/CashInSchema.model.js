@@ -6,9 +6,11 @@ const Schema = mongoose.Schema;
 const cashIn = new Schema({
 
 
-    sector:{
-        type:String,
-        
+  
+    seeder:{
+        type: Schema.Types.ObjectId,
+        ref:'cashseeder'
+
     },
     amount:{
         type:Number, 
@@ -27,9 +29,7 @@ const cashIn = new Schema({
         type:Number,
         default:null
     },
-    createdAt:{
-        type:Date
-    }    
+    
     
 
 

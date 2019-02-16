@@ -18,8 +18,9 @@
     <label for="exampleInputPassword1"><b>SECTOR</b></label>
    
     <select name="sector" id="stauts" class="form-control">              
-          <option value="cash">cash</option>  
-          <option value="bank">Bank</option>     
+         {{#each seederFetch}}
+          <option value={{id}}><span>{{seeder}}</span></option>  
+          {{/each}}
     </select>
   </div>
 

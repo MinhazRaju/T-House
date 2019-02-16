@@ -1,5 +1,6 @@
 import express from 'express';
 import CashInSchema from '../models/CashInSchema.model'
+import CashSeederSchema from '../models/CashSeederSchema.model'
 import _ from 'lodash'
 
 const router = express();
@@ -22,8 +23,15 @@ router.get('/' , (req , res)=>{
 
 router.get('/createEvent' , (req , res)=>{
 
-    res.render('admin/accounts/create')
-    console.log(req.body)
+
+    CashSeederSchema.find({}).then((readData)=>{
+
+        res.render('admin/accounts/create' , {seederFetch:readData})        
+
+    })
+
+
+   
 
 
 })
@@ -34,11 +42,11 @@ router.post('/createEvent' , (req , res)=>{
     
     const cashInput = new CashInSchema;
 
-    cashInput.sector = body.sector,
+    cashInput.seeder = body.sector
     cashInput.amount = body.amount,
-    cashInput.description = body.body
+    cashInput.description = body.body   
     cashInput.random = new Date().valueOf()
-    cashInput.createdAt = new Date().getTime
+    
 
     cashInput.save().then(()=>{
         console.log('saved')
@@ -48,13 +56,16 @@ router.post('/createEvent' , (req , res)=>{
 
 router.get('/cashInReport' , (req , res)=>{
    
-    CashInSchema.find({}).then((readData)=>{
+    CashInSchema.find({}).populate('seeder').then((readData)=>{
 
         res.render('admin/accounts' , {fetchCashInData:readData})
 
     })
     
-    
+
+
+})
+
 
 
 router.get('/createEvent/edit/:id' , (req , res)=>{
@@ -68,29 +79,21 @@ router.get('/createEvent/edit/:id' , (req , res)=>{
 
 })    
 
-   
-   
-    
 
 
 
 
-
-
-    
-
-
-})
 
 
 router.get('/cashOutReport' , (req , res)=>{
-
-
     res.render('admin/')
 
 
-
 })
+
+
+
+
 
 
 
