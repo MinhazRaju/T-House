@@ -1,0 +1,47 @@
+   <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">My Dashboard</li>
+      </ol>
+     <h1>All Post</h1>
+
+
+     <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Date</th>
+      <th scope="col">Ref Cash</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Description</th>
+      <th scope='col'>Edit</th>
+         
+    </tr>
+  </thead>
+  <tbody>
+    
+
+
+    <tr>
+
+      {{#each fetchCashInData}}
+
+
+      <th scope="row">{{random}}</th>
+      <td><b >{{getDate date 'Do-Mo-YYYY' }}</b><br><span style="color:indigo;">{{getDate date 'LTS'}}</span></td>
+      <td>{{sector}}</td>
+      <td>{{amount}}</td>
+      <td>{{description}}</td>      
+       <td><a href="/admin/createEvent/edit/{{id}}" class="btn btn-light">Eidt</i></a></td>    
+    </tr>
+
+
+    {{/each}}
+  </tbody>
+</table>
+
+     
+    </div>
