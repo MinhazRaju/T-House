@@ -13,8 +13,22 @@
 		
 <div class="col-md-6"> 
 
+  {{#if editCashSeed}}
 
- <form action="/admin/cashSeed/create" method="post" >
+ <form action="/admin/cashSeed/update/{{editCashSeed.id}}" method="post" >
+  <div class="form-group">
+    <label for="exampleInputEmail1">Seeder Name</label>
+    <input type="text" name="seeder" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="{{editCashSeed.seeder}}">
+    
+  </div> 
+
+  <button type="submit" class="btn btn-primary">Update</button>
+  <a  href="/admin/cashSeed" class="btn btn-danger">Cancle</a>
+</form>
+
+  {{else}}
+
+   <form action="/admin/cashSeed/create" method="post" >
   <div class="form-group">
     <label for="exampleInputEmail1">Seeder Name</label>
     <input type="text" name="seeder" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="">
@@ -23,6 +37,10 @@
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+
+
+  {{/if}}
 
 
 
@@ -42,38 +60,47 @@
 	</div>
  
 
-
+{{#if fetchCashSeed}}
 	
 <div class="col-md-6">
    	
      <table class="table">
   <thead>
+
+  
     <tr>
       <th scope="col">ID</th>
       <th scope="col">TITLE</th> 
       <th scope="col">EDIT</th>
       <th scope="col">DELETE</th> 
     </tr>
+
+    
   </thead>
   <tbody>
     
-
+  {{#each fetchCashSeed}}
     <tr>
-      <th scope="row">fd</th>
-      <td>1</td>      
+      <th scope="row">{{id}}</th>
+      <td>{{seeder}}</td>      
       <td>
- 		<a href="" class="btn btn-info">Edit</a>
+ 		    <a href="/admin/cashSeed/edit/{{id}}" class="btn btn-info">Edit</a>
       </td>
      
         
       <td>
-          <input type="submit"  value="Delete" class="btn btn-danger">
+          <a href="/admin/cashSeed/delete/{{id}}" class="btn btn-danger">Delete</a>
       </td>
     </tr>
  
+{{/each}}
+
+  {{else}}
+
+  
 
 
-
+{{/if}}
 
 
 

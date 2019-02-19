@@ -29,6 +29,10 @@ const cashIn = new Schema({
         type:Number,
         default:null
     },
+    seederId:{
+
+        type:String
+    }
     
     
 

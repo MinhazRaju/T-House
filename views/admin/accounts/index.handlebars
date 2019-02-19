@@ -1,15 +1,204 @@
-   <div class="container-fluid">
-      <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">My Dashboard</li>
-      </ol>
-     <h1>All Post</h1>
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+
+  <div class="container-fluid">
+    <!-- Breadcrumbs-->
 
 
-     <table class="table">
+
+    <div class="row">
+
+
+<h1>{{id}}</h1>
+
+
+
+
+
+      {{#if fetchCashInEditData}}
+      <div class="col-md-6">
+
+        
+
+        <form action="/admin/cashInReport/update/{{fetchCashInEditData.id}}" method="post">
+
+
+          <div class="form-group">
+            <label for="exampleInputPassword1"><b>SECTOR</b></label>
+            <select name="sector" id="stauts" class="form-control">
+              {{#select fetchCashInEditData.seeder}}
+              {{#each fetchCashSeederData}}
+              <option value="{{id}}">{{seeder}}</option>
+              {{/each}}
+              {{/select}}
+            </select>
+          </div>
+
+
+
+          <div class="form-group">
+            <label for="body"><b>AMOUNT</b></label>
+            <input class="form-control" type="number" name="amount" value="{{fetchCashInEditData.amount}}">
+          </div>
+
+
+          <div class="form-group">
+            <label for="body"><b>DESCRIPTION</b></label>
+            <input type="text" name="body" class="form-control" value="{{fetchCashInEditData.description}}">
+          </div>
+
+          
+
+
+          <button type="submit" class="btn btn-primary">update</button>
+          <a href="/admin/cashInReport" class="btn btn-danger">cancle</a>
+        </form>
+
+      </div>
+
+
+      {{else}}
+
+      <div class="col-md-6">
+
+
+      
+      <h6>Entry Point</h6>
+      <form action="/admin/createEvent" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label for="exampleInputPassword1"><b>SECTOR</b></label>
+
+          {{#if s}}
+             <select name="sector" id="stauts" class="form-control">
+               
+            {{#each s}}
+            <option value={{id}}><span>{{seeder}}</span></option>
+            {{/each}}
+        </select>
+            {{else}}
+
+          <select name="sector" id="stauts" class="form-control">
+            {{#each seederFetch}}
+            <option value={{id}}><span>{{seeder}}</span></option>
+            {{/each}}
+          </select>
+            {{/if}}
+          
+
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="body"><b>AMOUNT</b></label>
+          <input class="form-control" type="number" name="amount">
+        </div>
+
+
+        <div class="form-group">
+          <label for="body"><b>DESCRIPTION</b></label>
+          <input type="text" name="body" class="form-control">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+
+      </div>
+      
+
+
+
+
+
+
+ 
+
+
+    {{/if}}
+
+  {{#if fetchCashInEditData}}
+
+
+    {{else}}
+    <div class="col-sm-6">
+
+
+  
+
+
+
+
+      <div class="card">
+        <div class="card-body" style="margin:45px">
+          <h5 class="card-title">Transaction Details</h5>
+
+                <table class="table table-bordered">  
+  <tbody>
+    <tr>
+      
+      <td>Blance</td>
+      <td><b>&#x09F3;{{total}}</b></td>
+      
+    </tr>
+    <tr>
+      <td>Total Entry</td>
+      <td><b>{{count}}</b></td>
+     
+    </tr>  
+
+    <tr>
+      <td>Cash Entry</td>
+      <td><b>{{cash}}</b></td>
+     
+    </tr>
+    
+    
+    <tr>
+      <td>Bank Entry</td>
+      <td><b>{{bank}}</b></td>
+     
+    </tr> 
+  </tbody>
+</table>
+
+
+          <div class="list-group">
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+<br>  
+
+
+{{#if fetchCashInEditData}}
+
+
+{{else}}
+
+<table class="table">
   <thead>
     <tr>
       <th scope="col">Id</th>
@@ -18,11 +207,11 @@
       <th scope="col">Amount</th>
       <th scope="col">Description</th>
       <th scope='col'>Edit</th>
-         
+
     </tr>
   </thead>
   <tbody>
-    
+
 
 
     <tr>
@@ -31,17 +220,20 @@
 
 
       <th scope="row">{{random}}</th>
-      <td><b >{{getDate date 'Do-Mo-YYYY' }}</b><br><span style="color:indigo;">{{getDate date 'LTS'}}</span></td>
+      <td><b>{{getDate date 'Do-Mo-YYYY' }}</b><br><span style="color:indigo;">{{getDate date 'LTS'}}</span></td>
       <td>{{seeder.seeder}}</td>
-      <td>{{amount}}</td>
-      <td>{{description}}</td>      
-       <td><a href="/admin/createEvent/edit/{{id}}" class="btn btn-light">Eidt</i></a></td>    
+      <td>&#x09F3; {{amount}}</td>
+      <td>{{description}}</td>
+      <td><a href="/admin/cashInReport/edit/{{id}}" class="btn btn-light">Eidt</i></a></td>
     </tr>
-
-
     {{/each}}
   </tbody>
 </table>
+<hr>
 
-     
-    </div>
+{{/if}}
+
+
+
+
+</div>
