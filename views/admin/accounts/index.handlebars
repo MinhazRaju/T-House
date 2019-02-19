@@ -140,8 +140,17 @@
     <tr>
       
       <td>Blance</td>
-      <td><b>&#x09F3;{{total}}</b></td>
+      <td><b>&#x09F3; {{total}}</b></td>
       
+    </tr>
+    <tr>
+      <td>Cash amount</td>
+      <td><b>&#x09F3; {{cashamount}}</b></td>     
+    </tr>
+     <tr>
+      <td>Bank amount</td>
+      <td><b>&#x09F3; {{bankamount}}</b></td>
+     
     </tr>
     <tr>
       <td>Total Entry</td>
@@ -154,13 +163,14 @@
       <td><b>{{cash}}</b></td>
      
     </tr>
-    
+      
     
     <tr>
       <td>Bank Entry</td>
       <td><b>{{bank}}</b></td>
      
     </tr> 
+     
   
    
   </tbody>
@@ -189,9 +199,9 @@
 </div>
 
 
-<a style="margin-left:13px" href="/admin/cashInReport/csv" class="btn btn-success">Export csv</a>
 
-<br>
+
+
 <br>  
 
 
@@ -199,7 +209,9 @@
 
 
 {{else}}
-
+<a style="margin-left:13px" href="/admin/cashInReport/csv" class="btn btn-success">Export csv</a>
+<br>
+<br>  
 <table class="table">
   <thead>
     <tr>
@@ -223,8 +235,8 @@
 
       <th scope="row">{{random}}</th>
       <td><b>{{getDate date 'Do-Mo-YYYY' }}</b><br><span style="color:indigo;">{{getDate date 'LTS'}}</span></td>
-      <td>{{seeder.seeder}}</td>
-      <td>&#x09F3; {{amount}}</td>
+      <td><b>{{seeder.seeder}}</b></td>
+      <td><b>&#x09F3; {{amount}}</b></td>
       <td>{{description}}</td>
       <td><a href="/admin/cashInReport/edit/{{id}}" class="btn btn-light">Eidt</i></a></td>
     </tr>

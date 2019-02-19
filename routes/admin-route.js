@@ -55,7 +55,13 @@ router.get('/cashInReport' , (req , res , next)=>{
    
     CashInSchema.find({}).populate('seeder').then((readData)=>{
 
-         
+           
+           
+
+     
+
+
+
        if(readData.length == 0){
 
         CashSeederSchema.find({}).then((s)=>{
@@ -113,8 +119,37 @@ router.get('/cashInReport' , (req , res , next)=>{
                     console.log(bankCountdata)
 
                   const bank = bankCountdata[0].bankcount
+
+                  CashInSchema.find({seederId:"5c6b0549ad44070a34136163"}).then(readCashSum=>{
+                    const  cashsum = []
+
+                    for (let index = 0; index < readCashSum.length; index++) {
+                        
+                        cashsum.push(readCashSum[index].amount)
+                        
+                    }
+        
+                    const cashamount =  _.sum(cashsum)
+
+                    CashInSchema.find({seederId:"5c6b0544ad44070a34136162"}).then(readBankSum=>{
+                        const banksum = []
+                        for (let index = 0; index < readBankSum.length; index++) {
+                            
+                            banksum.push(readBankSum[index].amount)
+                            
+                        }
+            
+                        const bankamount =  _.sum(banksum)
+                        res.render('admin/accounts' , {fetchCashInData:readData , total:add, seederFetch:readSeedData , count:count , cash:cash , bank:bank , cashamount, bankamount})
+                    })     
+
+
+
+                    
+                })       
+               
                  
-                  res.render('admin/accounts' , {fetchCashInData:readData , total:add, seederFetch:readSeedData , count:count , cash:cash , bank:bank})
+                  
                 
                    
                 })   
