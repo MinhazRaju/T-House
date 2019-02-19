@@ -4,6 +4,11 @@ import CashSeederSchema from '../models/CashSeederSchema.model'
 import _ from 'lodash'
 import { Mongoose } from 'mongoose';
 
+const Json2csvParser = require('json2csv').Parser
+
+ 
+
+
 const router = express();
 
 
@@ -209,7 +214,37 @@ router.get('/cashOutReport' , (req , res)=>{
 
 
 
+router.get('/cashInReport/csv' , (req , res)=>{
 
+   
+   
+
+    CashInSchema.find({}).populate('seeder').then((myData)=>{
+
+
+   
+    
+        var fields = ['random' , 'date' ,'seeder.seeder', 'amount' , 'description']
+        var opts = {fields}
+
+        const parser = new Json2csvParser(opts)
+        const csv = parser.parse(myData);
+
+        console.log(csv)
+        
+            res.attachment('haha.csv')
+            res.status(200).send(csv);
+
+
+    }).catch(e=>{
+
+        console.log(e)
+    })
+
+
+
+
+})
 
 
 
