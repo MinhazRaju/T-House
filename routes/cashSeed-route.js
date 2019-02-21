@@ -21,6 +21,8 @@ router.get('/' ,(req , res)=>{
 
     CashSeederSchema.find({}).then((readData)=>{
 
+          
+
         res.render('admin/cashseed' , {fetchCashSeed:readData})
 
     })
@@ -41,6 +43,9 @@ router.post('/create' , (req , res)=>{
     cashseed.seeder = body.seeder
 
     cashseed.save().then(()=>{
+
+
+
        res.redirect('/admin/cashSeed')
     })    
 

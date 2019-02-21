@@ -8,6 +8,9 @@ import bodyParser from 'body-parser'
 import upload from 'express-fileupload'
 
 import {getDate , select} from './helpers/custom.function'
+import session from 'express-session';
+
+
 
 const publicPath =  path.join(__dirname , 'public')
 
@@ -29,6 +32,19 @@ app.use(express.static(publicPath))
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.use(upload())
+app.use(session({
+
+    secret:"AnySecretkey",
+    resave:true,
+    saveUninitialized:true
+
+
+}))
+
+
+
+
+
 
 const registerRoute = (route , path) =>{
 
