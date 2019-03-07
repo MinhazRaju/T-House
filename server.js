@@ -58,15 +58,16 @@ const registerRoute = (route , path) =>{
 
 
 import fontRouter from './routes/font-route'
-import adminRouter from './routes/admin-route';
+import adminRouter from './routes/admin-route'
 import cashSeed from './routes/cashSeed-route'
+import staff from './routes/staff-route'
 
 
 registerRoute('/' , fontRouter)
 
 registerRoute('/admin' ,  adminRouter)
 registerRoute('/admin/cashSeed' , cashSeed)
-
+registerRoute('/admin/staff' , staff)
 
 
 
